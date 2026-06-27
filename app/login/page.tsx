@@ -42,42 +42,41 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-canvas flex">
       {/* Left panel — colored card stack (decorative) */}
-      <div className="hidden lg:flex flex-col w-[320px] min-h-screen" style={{ background: '#0A0909' }}>
-        <div className="px-8 pt-10 pb-8">
-          <div className="text-white font-sans font-bold text-[28px] leading-none tracking-[-0.04em] mb-1">TFB.</div>
-          <div className="text-[9px] font-sans font-semibold tracking-[0.14em] uppercase" style={{ color: 'rgba(255,255,255,0.35)' }}>
-            The First Billionaire Course
+      <div className="hidden lg:flex flex-col w-[160px] min-h-screen" style={{ background: '#0D0D0D' }}>
+        <div className="px-4 pt-5 pb-4 flex-shrink-0">
+          <div className="text-white font-sans font-bold text-[22px] leading-none tracking-[-0.04em]">TFB.</div>
+          <div className="text-[8px] font-sans font-semibold tracking-[0.12em] uppercase mt-[3px] leading-[1.3]" style={{ color: 'rgba(255,255,255,0.32)' }}>
+            Unique Student<br />of Billions
           </div>
         </div>
 
-        <div className="px-5 flex flex-col gap-[5px]">
+        <div className="flex flex-col flex-1 min-h-0">
           {[
-            { n: '01', label: 'Command Center' },
-            { n: '02', label: '23 Domains' },
-            { n: '03', label: 'Daily Review' },
-            { n: '04', label: 'Application Journal' },
-            { n: '05', label: 'Progress & Streaks' },
+            { n: '01', label: 'Command\nCenter' },
+            { n: '02', label: '23\nDomains' },
+            { n: '03', label: 'Daily\nReview' },
+            { n: '04', label: 'Application\nJournal' },
+            { n: '05', label: 'Progress\n& Streaks' },
           ].map((item, i) => (
             <div
               key={item.n}
-              className="w-full rounded-[10px] p-[13px] flex flex-col justify-between"
-              style={{ background: NAV_COLORS[i], minHeight: '80px', opacity: 0.7 }}
+              className="flex-1 p-3 flex flex-col justify-between"
+              style={{ background: NAV_COLORS[i], opacity: 0.75 }}
             >
               <div className="flex items-start justify-between">
-                <span className="text-white font-sans font-bold text-[12px] leading-none opacity-80">{item.n}</span>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="opacity-60">
-                  <path d="M1 11L11 1M11 1H4M11 1V8" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                <span className="text-white font-sans font-bold text-[13px] leading-none" style={{ opacity: 0.85 }}>{item.n}</span>
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style={{ opacity: 0.7 }}>
+                  <path d="M1.5 11.5L11.5 1.5M11.5 1.5H4.5M11.5 1.5V8.5" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <div className="text-white font-sans font-bold text-[12px] leading-[1.2]">{item.label}</div>
+              <div className="text-white font-sans font-bold text-[13px] leading-[1.15]" style={{ whiteSpace: 'pre-line' }}>{item.label}</div>
             </div>
           ))}
         </div>
 
-        <div className="mt-auto px-8 pb-10">
-          <div className="text-[11px] font-sans leading-[1.7]" style={{ color: 'rgba(255,255,255,0.3)' }}>
-            Edition 1 · The Foundation<br />
-            Ceiling $100,000 MNW
+        <div className="px-4 py-4 flex-shrink-0" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="text-[9px] font-sans font-semibold tracking-[0.1em] uppercase leading-[1.6]" style={{ color: 'rgba(255,255,255,0.3)' }}>
+            Edition 1<br />The Foundation
           </div>
         </div>
       </div>
