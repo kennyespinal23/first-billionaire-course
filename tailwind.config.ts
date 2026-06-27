@@ -71,11 +71,11 @@ const config: Config = {
         info: '#4878c0',
       },
       fontFamily: {
-        serif:   ['Cormorant Garamond', 'Georgia', 'serif'],
-        sans:    ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        serif:   ['Georgia', 'serif'],
+        sans:    ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
         mono:    ['JetBrains Mono', 'Fira Code', 'monospace'],
-        body:    ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        body:    ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         '2xs': ['0.65rem', { lineHeight: '1rem', letterSpacing: '0.08em' }],

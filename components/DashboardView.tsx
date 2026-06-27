@@ -31,9 +31,9 @@ function ArrowIcon() {
   )
 }
 
-function SectionLabel({ color, children }: { color: string; children: React.ReactNode }) {
+function SectionPill({ color, children }: { color: string; children: React.ReactNode }) {
   return (
-    <div className="inline-flex items-center gap-2 border border-stone-3/20 rounded-full px-4 py-1.5 mb-8">
+    <div className="inline-flex items-center gap-2 border border-stone/10 rounded-full px-4 py-1.5 mb-8">
       <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: color }} />
       <span className="text-[10px] font-sans font-bold tracking-[0.16em] uppercase text-stone-4">{children}</span>
     </div>
@@ -56,62 +56,75 @@ export function DashboardView({ progress, kPct, levelName, onOpenDomain, onUpdat
   } else if (gap > progress.knowledge_mnw * 0.5) {
     diagIcon = '⚠️'
     diagTitle = 'Execution Gap Detected'
-    diagText = `Your Knowledge Net Worth (${fmt(progress.knowledge_mnw)}) is significantly ahead of your Applied Net Worth (${fmt(progress.applied_mnw)}). You understand more than you have tested. Your priority right now is not more study — it is applying what you know to real decisions.`
+    diagText = `Your Knowledge MNW (${fmt(progress.knowledge_mnw)}) is significantly ahead of your Applied MNW (${fmt(progress.applied_mnw)}). Your priority is applying what you know to real decisions — not more study.`
   } else if (gap < progress.knowledge_mnw * 0.2 && progress.knowledge_mnw > 10000) {
     diagIcon = '🚀'
     diagTitle = 'Knowledge Ceiling Approaching'
-    diagText = `Your Applied Net Worth (${fmt(progress.applied_mnw)}) is close to your Knowledge Net Worth (${fmt(progress.knowledge_mnw)}). Time to go deeper — complete more modules and raise your knowledge ceiling.`
+    diagText = `Your Applied MNW (${fmt(progress.applied_mnw)}) is close to your Knowledge MNW (${fmt(progress.knowledge_mnw)}). Complete more modules to raise your ceiling.`
   } else if (progress.knowledge_mnw > 0) {
     diagIcon = '✅'
     diagTitle = 'Balanced Progression'
-    diagText = `Knowledge (${fmt(progress.knowledge_mnw)}) and Applied (${fmt(progress.applied_mnw)}) are progressing in balance. Keep learning. Keep applying. You are building the compound curve.`
+    diagText = `Knowledge (${fmt(progress.knowledge_mnw)}) and Applied (${fmt(progress.applied_mnw)}) are progressing in balance. Keep learning. Keep applying.`
   }
 
   return (
     <div>
-      {/* Hero */}
-      <div className="relative px-8 md:px-14 py-16 border-b border-canvas-3 overflow-hidden bg-white">
-        <div className="pointer-events-none absolute right-12 bottom-6 font-sans font-bold text-[160px] text-stone/[0.028] leading-none select-none tracking-[-0.06em]">01</div>
+      {/* Hero — split layout */}
+      <div className="flex min-h-[420px] border-b border-canvas-3">
+        {/* Left: text content */}
+        <div className="flex-1 px-8 md:px-12 py-14 bg-white flex flex-col justify-center">
+          <SectionPill color="#4B6CF7">Edition 1 · The Foundation · Active</SectionPill>
+          <h1 className="font-sans font-extrabold text-[46px] md:text-[58px] leading-[0.92] text-stone tracking-[-0.03em] mb-5 max-w-[560px]">
+            Build the mind<br />of a billionaire.
+          </h1>
+          <p className="text-[15px] font-sans font-medium text-stone leading-[1.65] max-w-[420px] mb-8">
+            23 domains. 9 pillars. Three levels of thinking. A dual-track Mental Net Worth system that tells you exactly where you are.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => onOpenDomain(1)}
+              className="inline-flex items-center gap-2 bg-stone text-white font-sans font-bold text-[12px] tracking-[0.04em] uppercase px-7 py-4 rounded-full hover:opacity-90 transition-opacity"
+            >
+              Begin Domain 1 <ArrowIcon />
+            </button>
+            <button
+              onClick={() => onOpenDomain(2)}
+              className="inline-flex items-center gap-2 border border-stone/20 text-stone font-sans font-bold text-[12px] tracking-[0.04em] uppercase px-7 py-4 rounded-full hover:border-stone/40 transition-colors"
+            >
+              All 23 Domains
+            </button>
+          </div>
+        </div>
 
-        <SectionLabel color="#4B6CF7">Edition 1 · The Foundation · Active</SectionLabel>
-
-        <h1 className="font-sans font-bold text-[52px] md:text-[66px] leading-[0.92] text-stone tracking-[-0.035em] mb-6 max-w-[700px]">
-          Build the mind<br />of a billionaire.
-        </h1>
-        <p className="text-[15px] font-sans text-stone-4 leading-[1.7] max-w-[460px] mb-10">
-          23 domains. 9 pillars. Three levels of thinking. A dual-track Mental Net Worth system that tells you exactly where you are — and exactly what to do next.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <button
-            onClick={() => onOpenDomain(1)}
-            className="inline-flex items-center gap-2.5 bg-stone text-white font-sans font-bold text-[12px] tracking-[0.05em] uppercase px-7 py-[14px] rounded-full hover:bg-stone-2 transition-all"
-          >
-            Begin Domain 1
-            <ArrowIcon />
-          </button>
-          <button
-            onClick={() => onOpenDomain(2)}
-            className="inline-flex items-center gap-2.5 border border-stone-3/25 text-stone-3 font-sans font-bold text-[12px] tracking-[0.05em] uppercase px-7 py-[14px] rounded-full hover:border-stone hover:text-stone transition-all"
-          >
-            All 23 Domains
-          </button>
+        {/* Right: dark panel with MNW */}
+        <div className="hidden md:flex w-[320px] flex-shrink-0 flex-col justify-center px-8 py-10" style={{ background: '#0A0909' }}>
+          <div className="text-[10px] font-sans font-bold tracking-[0.16em] uppercase mb-6" style={{ color: 'rgba(255,255,255,0.35)' }}>
+            Mental Net Worth
+          </div>
+          <div className="font-sans font-extrabold text-[48px] leading-none text-white mb-1">{fmt(progress.knowledge_mnw)}</div>
+          <div className="text-[12px] font-sans mb-6" style={{ color: 'rgba(255,255,255,0.45)' }}>Knowledge · {levelName}</div>
+          <div className="h-[3px] rounded-full mb-4" style={{ background: 'rgba(255,255,255,0.1)' }}>
+            <div className="h-full rounded-full transition-all" style={{ width: `${kPct}%`, background: '#F5A623' }} />
+          </div>
+          <div className="font-sans font-extrabold text-[36px] leading-none mb-1" style={{ color: '#2DC97E' }}>{fmt(progress.applied_mnw)}</div>
+          <div className="text-[12px] font-sans" style={{ color: 'rgba(255,255,255,0.35)' }}>Applied · Real-world use</div>
         </div>
       </div>
 
       {/* MNW Panel */}
-      <div className="px-8 md:px-14 py-12 border-b border-canvas-3">
-        <SectionLabel color="#4B6CF7">Mental Net Worth</SectionLabel>
+      <div className="px-8 md:px-12 py-12 border-b border-canvas-3 bg-canvas">
+        <SectionPill color="#4B6CF7">Mental Net Worth Tracker</SectionPill>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           {[
-            { label: 'Knowledge Net Worth', val: progress.knowledge_mnw, color: '#4B6CF7', sub: 'What you understand · What you can explain' },
-            { label: 'Applied Net Worth',   val: progress.applied_mnw,   color: '#2DC97E', sub: 'What you\'ve used · Reality has confirmed' },
-            { label: 'True Level (Lower)',  val: trueMNW,                color: '#0A0909', sub: 'Your honest level · Cannot exceed applied' },
+            { label: 'Knowledge Net Worth', val: progress.knowledge_mnw, bg: '#4B6CF7', sub: 'What you understand' },
+            { label: 'Applied Net Worth',   val: progress.applied_mnw,   bg: '#2DC97E', sub: 'What you\'ve used in real life' },
+            { label: 'True Level',          val: trueMNW,                bg: '#0A0909', sub: 'Cannot exceed applied' },
           ].map(c => (
-            <div key={c.label} className="bg-white border border-canvas-3 rounded-[14px] p-6 hover:shadow-sm transition-shadow">
-              <div className="text-[10px] font-sans font-semibold tracking-[0.14em] uppercase text-stone-5 mb-3">{c.label}</div>
-              <div className="font-sans font-bold text-[36px] leading-none mb-2" style={{ color: c.color }}>{fmt(c.val)}</div>
-              <div className="text-[11px] font-sans text-stone-4 leading-[1.5]">{c.sub}</div>
+            <div key={c.label} className="rounded-[14px] p-7 text-white" style={{ background: c.bg }}>
+              <div className="text-[10px] font-sans font-bold tracking-[0.14em] uppercase opacity-60 mb-3">{c.label}</div>
+              <div className="font-sans font-extrabold text-[38px] leading-none mb-2">{fmt(c.val)}</div>
+              <div className="text-[12px] font-sans opacity-60">{c.sub}</div>
             </div>
           ))}
         </div>
@@ -119,97 +132,90 @@ export function DashboardView({ progress, kPct, levelName, onOpenDomain, onUpdat
         <div className="space-y-5 mb-6">
           {[
             { label: 'Knowledge Track — Edition 1 Ceiling: $100,000', pct: kPct, color: '#4B6CF7' },
-            { label: 'Applied Track — Closes with real-world use',     pct: aPct, color: '#2DC97E' },
+            { label: 'Applied Track — Grows with real-world use',      pct: aPct, color: '#2DC97E' },
           ].map(t => (
             <div key={t.label}>
               <div className="flex justify-between items-baseline mb-2">
-                <span className="text-[11px] font-sans font-semibold text-stone-4">{t.label}</span>
-                <span className="text-[11px] font-sans font-bold text-stone-3">{Math.round(t.pct)}%</span>
+                <span className="text-[12px] font-sans font-semibold text-stone">{t.label}</span>
+                <span className="text-[12px] font-sans font-bold text-stone">{Math.round(t.pct)}%</span>
               </div>
-              <div className="h-[5px] bg-canvas-2 rounded-full overflow-hidden">
-                <div
-                  className="h-full rounded-full transition-all duration-700"
-                  style={{ width: `${t.pct}%`, background: t.color }}
-                />
+              <div className="h-[6px] bg-canvas-2 rounded-full overflow-hidden">
+                <div className="h-full rounded-full transition-all duration-700" style={{ width: `${t.pct}%`, background: t.color }} />
               </div>
             </div>
           ))}
         </div>
 
         {/* Diagnosis */}
-        <div className="bg-white border border-canvas-3 rounded-[14px] p-5 flex items-start gap-4 mb-5">
+        <div className="bg-white border border-canvas-3 rounded-[14px] p-6 flex items-start gap-4 mb-5">
           <span className="text-2xl flex-shrink-0 mt-0.5">{diagIcon}</span>
           <div>
-            <div className="text-[13px] font-sans font-bold text-stone mb-1.5">{diagTitle}</div>
-            <div className="text-[12px] font-sans text-stone-4 leading-[1.75]">{diagText}</div>
+            <div className="text-[15px] font-sans font-extrabold text-stone mb-2">{diagTitle}</div>
+            <div className="text-[13px] font-sans font-medium text-stone leading-[1.75]">{diagText}</div>
             {progress.knowledge_mnw === 0 && (
-              <button
-                onClick={() => onOpenDomain(1)}
-                className="text-[11px] font-sans font-bold mt-2 transition-colors inline-block"
-                style={{ color: '#4B6CF7' }}
-              >
+              <button onClick={() => onOpenDomain(1)} className="text-[12px] font-sans font-bold mt-2 inline-block" style={{ color: '#4B6CF7' }}>
                 Start Domain 1 →
               </button>
             )}
           </div>
         </div>
 
-        {/* Real NW input */}
+        {/* Real NW */}
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-[11px] font-sans font-semibold text-stone-4 whitespace-nowrap">Your Real Net Worth ($)</span>
+          <span className="text-[12px] font-sans font-semibold text-stone whitespace-nowrap">Your Real Net Worth ($)</span>
           <input
             type="number"
             value={realNWInput}
             onChange={e => setRealNWInput(e.target.value)}
             placeholder="e.g. 45000"
-            className="bg-canvas-2 border border-canvas-3 rounded-full px-4 py-2 text-stone font-sans text-[12px] w-[160px] outline-none focus:border-stone-3 transition-colors"
+            className="bg-white border border-canvas-3 rounded-full px-4 py-2 text-stone font-sans text-[13px] w-[160px] outline-none focus:border-stone/30 transition-colors"
           />
           <button
             onClick={() => onUpdateRealNW(parseFloat(realNWInput) || 0)}
-            className="font-sans font-bold text-[11px] tracking-[0.06em] uppercase px-5 py-2 rounded-full bg-stone text-white hover:bg-stone-2 transition-all"
+            className="font-sans font-bold text-[11px] tracking-[0.06em] uppercase px-5 py-2 rounded-full bg-stone text-white hover:opacity-80 transition-opacity"
           >
             Update
           </button>
           {progress.real_nw > 0 && (
-            <span className="text-[11px] font-sans text-stone-4">
-              Real NW: {fmt(progress.real_nw)} ·{' '}
-              {progress.knowledge_mnw > progress.real_nw
-                ? 'Knowledge ahead — apply more aggressively'
-                : 'Results approaching ceiling — level up'}
+            <span className="text-[12px] font-sans font-medium text-stone">
+              Real NW: {fmt(progress.real_nw)} · {progress.knowledge_mnw > progress.real_nw ? 'Apply more aggressively' : 'Level up — approaching ceiling'}
             </span>
           )}
         </div>
       </div>
 
       {/* Edition Ladder */}
-      <div className="px-8 md:px-14 py-12 border-b border-canvas-3 bg-white">
-        <SectionLabel color="#FF5C2B">The Progression</SectionLabel>
-        <h2 className="font-sans font-bold text-[42px] md:text-[50px] text-stone tracking-[-0.03em] mb-2 leading-[0.93]">
+      <div className="px-8 md:px-12 py-12 border-b border-canvas-3 bg-white">
+        <SectionPill color="#FF5C2B">The Progression</SectionPill>
+        <h2 className="font-sans font-extrabold text-[42px] md:text-[52px] text-stone tracking-[-0.03em] mb-3 leading-[0.93]">
           Edition Ladder
         </h2>
-        <p className="text-[13px] font-sans text-stone-4 leading-[1.7] max-w-[500px] mb-10">
+        <p className="text-[14px] font-sans font-medium text-stone leading-[1.65] max-w-[500px] mb-10">
           Each edition raises your ceiling. Your Mental Net Worth tells you when you're ready for the next one.
         </p>
-        <div className="border border-canvas-3 rounded-[14px] overflow-hidden divide-y divide-canvas-3">
+        <div className="border border-canvas-3 rounded-[16px] overflow-hidden divide-y divide-canvas-3">
           {EDITIONS.map(ed => (
             <div
               key={ed.n}
-              className={`bg-white px-7 py-5 flex flex-wrap sm:flex-nowrap items-center gap-5 hover:bg-canvas transition-colors ${
-                ed.status === 'active' ? 'border-l-[3px] border-[#4B6CF7]' : ''
+              className={`bg-white px-8 py-5 flex flex-wrap sm:flex-nowrap items-center gap-5 hover:bg-canvas transition-colors ${
+                ed.status === 'active' ? 'border-l-[4px] border-[#4B6CF7]' : ''
               } ${ed.status === 'locked' || ed.status === 'invite' ? 'opacity-35' : ''}`}
             >
-              <span className="text-[10px] font-sans font-bold tracking-[0.1em] text-stone-5 w-[50px] flex-shrink-0">Ed. {ed.n}</span>
+              <span className="text-[10px] font-sans font-bold tracking-[0.1em] text-stone-4 w-[50px] flex-shrink-0">Ed. {ed.n}</span>
               <div className="flex-1 min-w-0">
-                <div className="text-[14px] font-sans font-bold text-stone mb-0.5">{ed.name}</div>
-                <div className="text-[11px] font-sans text-stone-4 leading-[1.5]">{ed.desc}</div>
+                <div className="text-[15px] font-sans font-extrabold text-stone mb-0.5">{ed.name}</div>
+                <div className="text-[12px] font-sans font-medium text-stone-2 leading-[1.5]">{ed.desc}</div>
               </div>
-              <span className="font-sans font-bold text-[18px] text-stone-3 w-[70px] text-right flex-shrink-0">{ed.ceiling}</span>
-              <div className="w-[80px] text-right flex-shrink-0">
-                <span className={`text-[9px] font-sans font-bold tracking-[0.12em] uppercase px-3 py-1 rounded-full ${
-                  ed.status === 'active'
-                    ? 'text-[#4B6CF7]'
-                    : 'text-stone-5'
-                }`} style={ed.status === 'active' ? { background: 'rgba(75,108,247,0.1)' } : { background: '#E2E2DA' }}>
+              <span className="font-sans font-extrabold text-[18px] text-stone w-[70px] text-right flex-shrink-0">{ed.ceiling}</span>
+              <div className="w-[90px] text-right flex-shrink-0">
+                <span
+                  className="text-[9px] font-sans font-bold tracking-[0.12em] uppercase px-3 py-1 rounded-full"
+                  style={
+                    ed.status === 'active'
+                      ? { color: '#4B6CF7', background: 'rgba(75,108,247,0.1)' }
+                      : { color: '#A09C96', background: '#E2E2DA' }
+                  }
+                >
                   {ed.status === 'active' ? 'Active' : ed.status === 'invite' ? 'Invite Only' : 'Locked'}
                 </span>
               </div>
@@ -218,16 +224,16 @@ export function DashboardView({ progress, kPct, levelName, onOpenDomain, onUpdat
         </div>
       </div>
 
-      {/* Featured domains */}
-      <div className="px-8 md:px-14 py-12">
-        <SectionLabel color="#2DC97E">Start Here</SectionLabel>
-        <h2 className="font-sans font-bold text-[42px] md:text-[50px] text-stone tracking-[-0.03em] mb-2 leading-[0.93]">
+      {/* Foundation Domains */}
+      <div className="px-8 md:px-12 py-12">
+        <SectionPill color="#2DC97E">Start Here</SectionPill>
+        <h2 className="font-sans font-extrabold text-[42px] md:text-[52px] text-stone tracking-[-0.03em] mb-3 leading-[0.93]">
           Foundation Domains
         </h2>
-        <p className="text-[13px] font-sans text-stone-4 leading-[1.7] mb-10">
+        <p className="text-[14px] font-sans font-medium text-stone leading-[1.65] mb-10">
           The first six form the bedrock. Every other domain builds on these.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {DOMAINS.slice(0, 6).map((d, i) => (
             <DomainCard key={d.n} domain={d} index={i} onOpen={onOpenDomain} isCompleted={completed.has(d.n)} />
           ))}
