@@ -10,15 +10,15 @@ interface Props {
 
 export function DomainsView({ onOpenDomain, completed }: Props) {
   return (
-    <div className="px-6 md:px-16 py-10">
-      <div className="label text-gold mb-3 flex items-center gap-3">
-        <span className="inline-block w-[22px] h-px bg-gold" />
-        Complete Curriculum
+    <div className="px-8 md:px-14 py-12">
+      <div className="inline-flex items-center gap-2 border border-stone-3/20 rounded-full px-4 py-1.5 mb-8">
+        <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#FF5C2B' }} />
+        <span className="text-[10px] font-sans font-bold tracking-[0.16em] uppercase text-stone-4">Complete Curriculum</span>
       </div>
-      <h1 className="font-serif text-[40px] font-light text-cream tracking-[-0.02em] mb-2 leading-[1.1]">
-        All <em className="not-italic text-gold-2">23</em> Domains
+      <h1 className="font-sans font-bold text-[42px] md:text-[52px] text-stone tracking-[-0.03em] mb-2 leading-[0.93]">
+        All 23 Domains
       </h1>
-      <p className="text-[13px] text-cream-2 leading-[1.7] max-w-[560px] mb-8">
+      <p className="text-[13px] font-sans text-stone-4 leading-[1.7] max-w-[540px] mb-10">
         No depth limits. Three thinking levels each. Required reading, video assignments, Socratic questions, case studies, and Outside the Box challenges. Click any domain to begin.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">

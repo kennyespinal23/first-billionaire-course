@@ -222,7 +222,7 @@ export function AppShell({
       </div>
 
       {/* Main content */}
-      <main className="flex-1 min-h-screen lg:ml-[272px] pb-20 lg:pb-0">
+      <main className="flex-1 min-h-screen lg:ml-[272px] pb-20 lg:pb-0 bg-canvas">
         {view === 'dash' && (
           <DashboardView
             progress={progress}

@@ -13,21 +13,35 @@ export function DomainCard({ domain: d, index, onOpen, isCompleted }: Props) {
   return (
     <button
       onClick={() => onOpen(d.n)}
-      className="bg-ink-2 border border-border rounded-[10px] p-[22px] text-left hover:border-opacity-60 hover:-translate-y-0.5 hover:bg-ink-3 transition-all duration-150 relative overflow-hidden group"
+      className="bg-white border border-canvas-3 rounded-[14px] p-6 text-left hover:shadow-md hover:-translate-y-0.5 transition-all duration-150 relative overflow-hidden group"
       style={{ animationDelay: `${index * 0.03}s` }}
     >
-      {/* Top color accent */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: d.c }} />
+      {/* Color top bar */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[3px]"
+        style={{ background: d.c }}
+      />
 
-      <div className="font-mono text-[8px] tracking-[0.12em] text-cream-5 mb-3">Domain {String(d.n).padStart(2, '0')}</div>
-      <div className="w-[38px] h-[38px] rounded-lg flex items-center justify-center text-[17px] mb-3 flex-shrink-0" style={{ background: `${d.c}18`, color: d.c }}>
+      <div className="text-[9px] font-sans font-bold tracking-[0.14em] uppercase text-stone-5 mb-4">
+        Domain {String(d.n).padStart(2, '0')}
+      </div>
+      <div
+        className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center text-[17px] mb-4 flex-shrink-0"
+        style={{ background: `${d.c}18`, color: d.c }}
+      >
         {d.i}
       </div>
-      <div className="text-[12px] font-bold text-cream mb-[5px] leading-[1.3] tracking-[0.01em]">{d.name}</div>
-      <div className="text-[11px] text-cream-2 leading-[1.65] mb-[14px]">{d.desc}</div>
+      <div className="text-[13px] font-sans font-bold text-stone mb-1.5 leading-[1.25]">{d.name}</div>
+      <div className="text-[11px] font-sans text-stone-4 leading-[1.65] mb-5">{d.desc}</div>
       <div className="flex items-center justify-between">
-        <span className="font-mono text-[8px] text-cream-5">{d.mods}</span>
-        <span className="font-mono text-[8px] px-2 py-0.5 rounded-full" style={{ background: `${d.c}18`, color: d.c }}>
+        <span className="text-[10px] font-sans text-stone-5">{d.mods}</span>
+        <span
+          className="text-[9px] font-sans font-bold tracking-[0.1em] uppercase px-2.5 py-1 rounded-full"
+          style={{
+            background: isCompleted ? `${d.c}15` : '#E2E2DA',
+            color: isCompleted ? d.c : '#A09C96',
+          }}
+        >
           {isCompleted ? '✓ Complete' : 'Phase 01'}
         </span>
       </div>

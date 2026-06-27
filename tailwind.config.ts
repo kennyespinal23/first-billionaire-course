@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Sidebar dark theme (kept)
         ink: {
           DEFAULT: '#090807',
           2: '#111009',
@@ -36,6 +37,32 @@ const config: Config = {
           2: '#2e2c1c',
           3: '#3e3c2c',
         },
+        // Light main content theme
+        canvas: {
+          DEFAULT: '#F5F4EF',
+          2: '#EEEEE8',
+          3: '#E2E2DA',
+        },
+        stone: {
+          DEFAULT: '#0A0909',
+          2: '#1A1918',
+          3: '#363532',
+          4: '#66635E',
+          5: '#A09C96',
+        },
+        // Nav card colors (units.gr inspired)
+        nav: {
+          blue:   '#4B6CF7',
+          orange: '#FF5C2B',
+          red:    '#E63B3B',
+          green:  '#2DC97E',
+          purple: '#9B3FF4',
+        },
+        // Accent
+        accent: {
+          DEFAULT: '#FFB200',
+          2: '#FFCA3A',
+        },
         success: {
           DEFAULT: '#4a9e6a',
           light: '#6ab880',
@@ -44,10 +71,11 @@ const config: Config = {
         info: '#4878c0',
       },
       fontFamily: {
-        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
-        sans: ['Syne', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        serif:   ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans:    ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'Fira Code', 'monospace'],
+        body:    ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         '2xs': ['0.65rem', { lineHeight: '1rem', letterSpacing: '0.08em' }],
@@ -56,6 +84,7 @@ const config: Config = {
       borderRadius: {
         DEFAULT: '10px',
         sm: '6px',
+        lg: '16px',
         full: '9999px',
       },
       screens: {
