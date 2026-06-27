@@ -37,11 +37,11 @@ const config: Config = {
           2: '#2e2c1c',
           3: '#3e3c2c',
         },
-        // Light main content theme
+        // Light main content theme — warm cream matching units.gr
         canvas: {
-          DEFAULT: '#F5F4EF',
-          2: '#EEEEE8',
-          3: '#E2E2DA',
+          DEFAULT: '#EDE8DF',
+          2: '#E4DFCF',
+          3: '#D4CEBC',
         },
         stone: {
           DEFAULT: '#0A0909',
@@ -72,10 +72,10 @@ const config: Config = {
       },
       fontFamily: {
         serif:   ['Georgia', 'serif'],
-        sans:    ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans:    ['DM Sans', 'system-ui', 'sans-serif'],
+        display: ['DM Sans', 'system-ui', 'sans-serif'],
         mono:    ['JetBrains Mono', 'Fira Code', 'monospace'],
-        body:    ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        body:    ['DM Sans', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         '2xs': ['0.65rem', { lineHeight: '1rem', letterSpacing: '0.08em' }],

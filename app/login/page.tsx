@@ -41,16 +41,16 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-canvas flex">
-      {/* Left panel — colored card stack (decorative) */}
-      <div className="hidden lg:flex flex-col w-[160px] min-h-screen" style={{ background: '#0D0D0D' }}>
+      {/* Left panel — cream bg with colored cards, matching the app sidebar */}
+      <div className="hidden lg:flex flex-col w-[170px] min-h-screen" style={{ background: '#EDE8DF' }}>
         <div className="px-4 pt-5 pb-4 flex-shrink-0">
-          <div className="text-white font-sans font-bold text-[22px] leading-none tracking-[-0.04em]">TFB.</div>
-          <div className="text-[8px] font-sans font-semibold tracking-[0.12em] uppercase mt-[3px] leading-[1.3]" style={{ color: 'rgba(255,255,255,0.32)' }}>
-            Unique Student<br />of Billions
+          <div className="font-sans font-black text-[22px] leading-none tracking-[-0.04em] text-stone">TFB.</div>
+          <div className="text-[8px] font-sans font-semibold tracking-[0.12em] uppercase mt-[3px] leading-[1.3] text-stone-4">
+            The First<br />Billionaire Course
           </div>
         </div>
 
-        <div className="flex flex-col flex-1 min-h-0">
+        <div className="flex flex-col flex-1 min-h-0 px-2 gap-[5px]">
           {[
             { n: '01', label: 'Command\nCenter' },
             { n: '02', label: '23\nDomains' },
@@ -60,22 +60,22 @@ export default function LoginPage() {
           ].map((item, i) => (
             <div
               key={item.n}
-              className="flex-1 p-3 flex flex-col justify-between"
-              style={{ background: NAV_COLORS[i], opacity: 0.75 }}
+              className="flex-1 p-3 flex flex-col justify-between rounded-[12px]"
+              style={{ background: NAV_COLORS[i], opacity: 0.82 }}
             >
               <div className="flex items-start justify-between">
-                <span className="text-white font-sans font-bold text-[13px] leading-none" style={{ opacity: 0.85 }}>{item.n}</span>
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style={{ opacity: 0.7 }}>
-                  <path d="M1.5 11.5L11.5 1.5M11.5 1.5H4.5M11.5 1.5V8.5" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
+                <span className="font-sans font-bold text-[13px] leading-none text-white opacity-90">{item.n}</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ opacity: 0.7 }}>
+                  <path d="M1 11L11 1M11 1H4M11 1V8" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <div className="text-white font-sans font-bold text-[13px] leading-[1.15]" style={{ whiteSpace: 'pre-line' }}>{item.label}</div>
+              <div className="font-sans font-bold text-[12.5px] leading-[1.18] text-white" style={{ whiteSpace: 'pre-line' }}>{item.label}</div>
             </div>
           ))}
         </div>
 
-        <div className="px-4 py-4 flex-shrink-0" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-          <div className="text-[9px] font-sans font-semibold tracking-[0.1em] uppercase leading-[1.6]" style={{ color: 'rgba(255,255,255,0.3)' }}>
+        <div className="px-4 py-4 flex-shrink-0" style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}>
+          <div className="text-[9px] font-sans font-semibold tracking-[0.1em] uppercase leading-[1.6] text-stone-4">
             Edition 1<br />The Foundation
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function LoginPage() {
         <div className="w-full max-w-[380px]">
           {/* Mobile logo */}
           <div className="lg:hidden mb-10">
-            <div className="text-stone font-sans font-bold text-[28px] leading-none tracking-[-0.04em] mb-1">TFB.</div>
+            <div className="font-sans font-black text-[28px] leading-none tracking-[-0.04em] mb-1 text-stone">TFB.</div>
             <div className="text-[10px] font-sans font-semibold tracking-[0.14em] uppercase text-stone-4">
               The First Billionaire Course
             </div>
